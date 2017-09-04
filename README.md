@@ -13,9 +13,29 @@ Fuji曝光機將所有對位參數儲存於Mark_ID.tif檔內，人員可於生�
 ![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/collector_flowchart.png?raw=true) 
 
 
-如上節所述，Collector於執行期間會不斷搜尋設備端logshare內，是否有較上次紀錄時間更晚產生的AF.log檔。當新的AF.log檔產生時，再依序讀取job info.xml、jobs.csv、Mark_ID.tif取得生產時產品資料與對位參數。
+如上節所述，Collector於執行期間會不斷搜尋設備端logshare資料夾內，是否有較上次紀錄時間更晚產生的AF.log檔。當新的AF.log檔產生時，再依序讀取job info.xml、jobs.csv、Mark_ID.tif取得生產時產品資料與對位參數。
 
 ### 2-2.Collector 輸出形式
 ![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/collector.png?raw=true)
 
-每次程式取得產品資料與對位參數會將其輸出至指定路徑(up_output_path/dn_output_path)
+每次程式取得產品資料與對位參數會將其輸出至指定路徑(上游側:up_output_path/下游側:dn_output_path)，包含以下內容:
+
+1. 指定路徑下:以產品名+層別名命名的資料夾。
+2. 指定路徑/產品名+層別名資料夾下:以生產日期+批號+產品名+層別名+流水號命名的Mark_ID.tif備存檔。
+3. 指定路徑/產品名+層別名資料夾下:包含所有生產資訊與對位參數的template_log.csv檔。
+
+### 2-3.Collector 使用說明
+1. 編譯時須將collector.cpp、tinyxml2.cpp、tinyxml2.h加入同一個專案內。
+
+![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/collector_members.png?raw=true)
+
+2. 依設備IP Address修正collector.cpp內up_logshare_path、dn_logshare_path、up_jobs_path、dn_jobs_path、up_template_path、dn_template_path所指定路徑。
+3. 依需求修正collector.cpp內up_output_path、dn_output_path指定的輸出路徑。
+
+![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/collector_dir_path.png?raw=true)
+
+## 3.Classifier
+### 3-1.Classifier 執行流程圖
+![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/classifier_flowchart.png?raw=true) 
+
+接續collector蒐集的結果，
