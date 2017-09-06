@@ -4,7 +4,7 @@
 
 ## 1.Fuji曝光機 product log產生流程
 ### 1-1.Product log 製作流程圖
-![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/exposurer_flowchart.jpg?raw=true) 
+![picture alt](https://github.com/bn90207/Fuji_log_parser/blob/master/illustrations/Fuji%20exposurer.png?raw=true) 
 
 Fuji曝光機將所有對位參數儲存於Mark_ID.tif檔內，人員可於生產期間依需求任意修改，但設備未紀錄其修改履歷。由上方流程圖可知每次設備生產時均會產生一份AF.log檔，其檔名包含生產時間。故可藉由不斷檢查有無新的AF.log檔產生，來確認是否有對位事件發生，並啟動程式備存產品資料與Mark_ID.tif。
 
